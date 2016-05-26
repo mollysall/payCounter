@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Money Calculator </title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>How much money have you made today?</h1>
+		</div>
+	</div>
+	<div class="container">
+		<div class="well">
+
+			<button type="button"
+			onclick="document.getElementById('demo').innerHTML = secondRate(calcSecondRate(x), start, now)">
+			Click me to display what you've made</button><br>
+
+			<br>
+			<strong>
+				<p id="demo">Calculating how much you've made...</p>
+			</strong>
+		</div>
+	</div>
+	<script>
+		var x=15.00;
+		var now = new Date()
+		var start = new Date();
+		start.setHours(9);
+		start.setMinutes(00);
+		start.setSeconds(00);
+		console.log(start);
+
+		function calcSecondRate(hourlyRate){
+
+			return hourlyRate/(60*60);
+	//return hourlyRate / (60*60);
+}
+
+function secondRate(secondsRate, date1, date2){
+	//1 minute in ms
+	var one_sec = 1000;
+	//calculate the dates in ms (since 1/1/1970)
+	var date1_ms = date1.getTime();
+	var date2_ms = date2.getTime();
+	//find positive difference since orcer of dates doesnt matter
+	var difference = Math.abs(date2_ms - date1_ms);
+	//Find the number of seconds between two dates
+	var seconds = Math.round(difference/one_sec);
+	//find amount of $$ made each second
+	//find total amount made
+	return "$"+ (secondsRate * seconds).toFixed(2);
+}
+//var x = calcSecondRate(15.00);
+console.log(x);
+money = secondRate(calcSecondRate(x), start, now);
+
+
+
+</script>
+
+
+<!-- <button type="button"
+onclick="document.getElementById('demo').innerHTML = money">
+How much Money have you made?</button> -->
+
+
+
+</body>
+</html> 
